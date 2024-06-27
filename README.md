@@ -1,5 +1,35 @@
 # README #
 
+# Task Management Application
+
+The Task Management Application is a comprehensive tool designed to help users efficiently manage their tasks. This application provides users with the ability to create, edit, and delete tasks, ensuring that they can keep track of their responsibilities and commitments with ease.
+
+## Key Features
+
+1. **Task Creation and Management**
+   - Users can create new tasks, specifying important details such as the date, start and end time, subject, and description.
+   - Tasks can be easily edited or deleted as needed, allowing users to keep their task list up-to-date and relevant.
+
+2. **Task Organization**
+   - Tasks are categorized into two main groups: today's tasks and upcoming tasks.
+   - Within these categories, tasks are further organized by date and time, providing a clear and structured overview of the user's schedule.
+
+3. **Detailed Task Information**
+   - Each task entry includes the following data:
+     - **User:** The individual responsible for the task.
+     - **Date:** The specific date on which the task is scheduled.
+     - **Start and End Time:** The precise time frame during which the task will be carried out.
+     - **Subject:** A brief title or summary of the task.
+     - **Description:** A detailed explanation of the task's content and objectives.
+
+## Objective
+
+The primary goal of the Task Management Application is to enhance productivity and organization by providing users with a user-friendly platform to manage their daily and upcoming tasks. By consolidating task management into a single application, users can ensure that they never miss an important deadline or appointment, ultimately leading to better time management and increased efficiency.
+
+This project is aimed at individuals seeking a reliable and intuitive solution to manage their personal and professional tasks. Whether used for work-related responsibilities or personal to-do lists, the Task Management Application is designed to adapt to the needs of every user, offering a seamless and effective way to stay organized and productive.
+
+
+
 ## Architecture 
 
 ### Application View 
