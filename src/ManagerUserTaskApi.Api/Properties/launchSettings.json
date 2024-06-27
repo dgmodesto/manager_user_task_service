@@ -1,0 +1,59 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:24678",
+      "sslPort": 44331
+    }
+  },
+  "profiles": {
+    "personal_netcore_template.Api": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "api-docs",
+      "applicationUrl": "https://localhost:7199;http://localhost:5288",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "REALM_LOOKUP_ClientId": "ManagerUserTaskApi-client-id",
+        "REALM_LOOKUP_ClientSecret": "EmHn28XkGxBZV8kLYS9yxN0pBfAk9ME0",
+        "REALM_LOOKUP_Name": "ManagerUserTaskApiRealm",
+        "IDP_BaseUrl": "http://localhost:8080",
+        "IDP_PATH_Auth": "realms/{0}/protocol/openid-connect/token",
+        "IDP_PATH_Logout": "realms/{0}/protocol/openid-connect/logout",
+        "IDP_PATH_ForgotPassword": "/admin/realms/{0}/users/{1}/reset-password-email",
+        "Serilog__WriteTo__1__Args__remoteAddress": "logstash.elk",
+        "Serilog__WriteTo__1__Args__remotePort": "5000",
+        "Serilog__MinimumLevel__Override__Microsoft": "Debug",
+        "Serilog__MinimumLevel__Override__DocumentsManager.Api": "Debug",
+        "Serilog__MinimumLevel__Override__System": "Debug",
+        "Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore": "Debug",
+        "ConnectionStrings_open": "host=localhost:5432;port=5432;database=ManagerUserTaskApi_db;username=default;password=ManagerUserTaskApi!@85",
+        "Private_Key": "<RSAKeyValue><InverseQ>m/ytAfM3mZ/wi52xk1EVjdNTdIu4J5Ad+dEO8x6DWhCGP85008dnUcm4q+iyCGcqQ1206KBQ2Jlafjt39X1e8jbM3KAJd+nit4Fk21OPP3xq0g5Sewdslwjke1T/r4f8BN8Ug6a9YThmiPZYBoqfqxetnjth7BKbXjF+jRSv0p4=</InverseQ><DQ>l1HFAU41P2nqetJvjH8im6fY3AVtlRvsprFB48sHLsaz1K3b4KGOjmlm+jKOukULJG4Pc/r0+qmTn356ORe+75lSLDj9kFmXOzDHaR0JFV2hJsnnTbLcr6dFGnihEtOBdVd6BP7cAtL+w7r2knyHVMrSfcvuSh/a3Y35Wa8///c=</DQ><DP>aT2tuXC/Z5UOw9Q/GWZJz0HyNSS3IJICwt+VPyG2FPTNb8MKlTmVI5/eH+Qt3Q/df/7rVdu0Z3cIH1g+3wii0d0BnxtZhSriIqnctWfzo3RS1OZZ9+LtOTKdFmmvskb0B/Wx5BFyHSnGViiNn6g18oFOMy7J1ZlUJ9ZExVmEJS0=</DP><Q>0NhnT79XWed1c2RsZmdYEbJAUObLSxoQproeCNXwGxLo/hWfIk0OnYTnxnlApmnhKN2/zVX/9G77+oMnrqAbeEtxYR4WRdUuV2QZ6M8/p+EylnDpzWj8BMmBMrlg50jaPUf5YdaiL7plz5X1CssugYo9+DIjbl0RXJ6aPV2YMa8=</Q><P>9ex0+YFZeWxLzkyEqT5DV1n1lf9YYz+ddrOsheoarX4BLGuoOpo1nB0m7/APff+fK53jPG+ZgTokBaBJhwh4JT12WlaTCUu8k9W2ybH8DSTOX7URdGNuSLFbYRdLmLu59gxSPWf8e3G12DqZUEAqThdWVfT7mpmeonYoFgmLCrs=</P><D>KABXO2j/2lzbclcJ89lYySqc40vHJAh2HV3Vvt61qBWP1nNjrRJNqxgBJWw+3WIv1gvLA+/wCLBE0LGu/UnZH3F9kEspeUT+3L6N/VXXvkXQmE0vejPIH+FjleYUyRiVvI+IzZ0oV2n55CitPeJuaH4gT0I9GqFBUDGV262dImuSC0skBOd7erOToi/STo4YcQTo0ITOgQplv3e1ynR8iJ9dvcitgyQvo8Q0LJPoF5qoWEV0oDpk0rHcblN/9pLBpf4/dcdF1coxljtEuUtaOrNmeeHI+GG9b0RZ3xsCZl7iUDaudNBs/ddUCy3vJL9vycQPF0SFzqmKBJWJ4NBUpQ==</D><Exponent>AQAB</Exponent><Modulus>yKABzCp1py/Rl4xqtjmSYH7By7REuQNGT1gLsLQD+RaqZ9uuHgN2avZYnreTkwOv/ljZERUte9e/6n+cnNNR+dI3FiwJaYw3wHk01e8iJmPuzRPriN7CiQ0srIPI5J5afsflxSWYS27QiGfwnLlrC6rVJEY48w6iNJnLArZ9WJfa7QG7N2UIvJvdAbS/wsRRJgTrm/qPLXDjTHmwjGegZ+177fXKVkjiMisUYwGYFuE1SsqwY9bNFDR+29+r1bqqTa22KqPa6fvud3xlF0PjEGtJg9lDXnuKGH1ErNHAy1atcamnbIUeI7WpKCYEvP4xKSr/wTMUE1Y4/tjncSIg1Q==</Modulus></RSAKeyValue>",
+        "ConnectionStrings__netcore_template_DB": "qyN+26snOrJnkWVyKsxqi8GEgZDfxCLK/RuKqeJRijAizIT8N77cwtZVKawh5iyUsWvEXw48pvaoWhY/m955cVJPG8/xHhkfk8q93PzT8dpmXv36RPuO6FgL4n6ZRdLV8dyLhe+jRWf2Gs2EMJykstyddfIBAtwa9gxpfv8RAfbG/709NYxp/eaeKmHa991Ej6xr4GYZ+2dguYHz4H55Tkrv+nfsgSLoKbVzxJX3UsaovatHxWsM3LxS/kqWK1M5dr7suyM+xZiW7rJnFQjtyzWd3g8KQayhGm3p3QVNcBK/PmXlreKAt5dbsKuzdVySLGBdM8EM432WTmVbLxQeaw==",
+        "ConnectionStrings__event_store_DB": "qyN+26snOrJnkWVyKsxqi8GEgZDfxCLK/RuKqeJRijAizIT8N77cwtZVKawh5iyUsWvEXw48pvaoWhY/m955cVJPG8/xHhkfk8q93PzT8dpmXv36RPuO6FgL4n6ZRdLV8dyLhe+jRWf2Gs2EMJykstyddfIBAtwa9gxpfv8RAfbG/709NYxp/eaeKmHa991Ej6xr4GYZ+2dguYHz4H55Tkrv+nfsgSLoKbVzxJX3UsaovatHxWsM3LxS/kqWK1M5dr7suyM+xZiW7rJnFQjtyzWd3g8KQayhGm3p3QVNcBK/PmXlreKAt5dbsKuzdVySLGBdM8EM432WTmVbLxQeaw==",
+        "Redis": "localhost:6379"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Serilog__WriteTo__1__Args__remoteAddress": "logstash.elk",
+        "Serilog__WriteTo__1__Args__remotePort": "5000",
+        "Serilog__MinimumLevel__Override__Microsoft": "Debug",
+        "Serilog__MinimumLevel__Override__DocumentsManager.Api": "Debug",
+        "Serilog__MinimumLevel__Override__System": "Debug",
+        "Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore": "Debug",
+        "ConnectionStrings_open": "host=localhost:15432;port=5432;database=ManagerUserTaskApi_db;username=default;password=ManagerUserTaskApi!@85",
+        "Private_Key": "<RSAKeyValue><InverseQ>m/ytAfM3mZ/wi52xk1EVjdNTdIu4J5Ad+dEO8x6DWhCGP85008dnUcm4q+iyCGcqQ1206KBQ2Jlafjt39X1e8jbM3KAJd+nit4Fk21OPP3xq0g5Sewdslwjke1T/r4f8BN8Ug6a9YThmiPZYBoqfqxetnjth7BKbXjF+jRSv0p4=</InverseQ><DQ>l1HFAU41P2nqetJvjH8im6fY3AVtlRvsprFB48sHLsaz1K3b4KGOjmlm+jKOukULJG4Pc/r0+qmTn356ORe+75lSLDj9kFmXOzDHaR0JFV2hJsnnTbLcr6dFGnihEtOBdVd6BP7cAtL+w7r2knyHVMrSfcvuSh/a3Y35Wa8///c=</DQ><DP>aT2tuXC/Z5UOw9Q/GWZJz0HyNSS3IJICwt+VPyG2FPTNb8MKlTmVI5/eH+Qt3Q/df/7rVdu0Z3cIH1g+3wii0d0BnxtZhSriIqnctWfzo3RS1OZZ9+LtOTKdFmmvskb0B/Wx5BFyHSnGViiNn6g18oFOMy7J1ZlUJ9ZExVmEJS0=</DP><Q>0NhnT79XWed1c2RsZmdYEbJAUObLSxoQproeCNXwGxLo/hWfIk0OnYTnxnlApmnhKN2/zVX/9G77+oMnrqAbeEtxYR4WRdUuV2QZ6M8/p+EylnDpzWj8BMmBMrlg50jaPUf5YdaiL7plz5X1CssugYo9+DIjbl0RXJ6aPV2YMa8=</Q><P>9ex0+YFZeWxLzkyEqT5DV1n1lf9YYz+ddrOsheoarX4BLGuoOpo1nB0m7/APff+fK53jPG+ZgTokBaBJhwh4JT12WlaTCUu8k9W2ybH8DSTOX7URdGNuSLFbYRdLmLu59gxSPWf8e3G12DqZUEAqThdWVfT7mpmeonYoFgmLCrs=</P><D>KABXO2j/2lzbclcJ89lYySqc40vHJAh2HV3Vvt61qBWP1nNjrRJNqxgBJWw+3WIv1gvLA+/wCLBE0LGu/UnZH3F9kEspeUT+3L6N/VXXvkXQmE0vejPIH+FjleYUyRiVvI+IzZ0oV2n55CitPeJuaH4gT0I9GqFBUDGV262dImuSC0skBOd7erOToi/STo4YcQTo0ITOgQplv3e1ynR8iJ9dvcitgyQvo8Q0LJPoF5qoWEV0oDpk0rHcblN/9pLBpf4/dcdF1coxljtEuUtaOrNmeeHI+GG9b0RZ3xsCZl7iUDaudNBs/ddUCy3vJL9vycQPF0SFzqmKBJWJ4NBUpQ==</D><Exponent>AQAB</Exponent><Modulus>yKABzCp1py/Rl4xqtjmSYH7By7REuQNGT1gLsLQD+RaqZ9uuHgN2avZYnreTkwOv/ljZERUte9e/6n+cnNNR+dI3FiwJaYw3wHk01e8iJmPuzRPriN7CiQ0srIPI5J5afsflxSWYS27QiGfwnLlrC6rVJEY48w6iNJnLArZ9WJfa7QG7N2UIvJvdAbS/wsRRJgTrm/qPLXDjTHmwjGegZ+177fXKVkjiMisUYwGYFuE1SsqwY9bNFDR+29+r1bqqTa22KqPa6fvud3xlF0PjEGtJg9lDXnuKGH1ErNHAy1atcamnbIUeI7WpKCYEvP4xKSr/wTMUE1Y4/tjncSIg1Q==</Modulus></RSAKeyValue>",
+        "ConnectionStrings__netcore_template_DB": "qyN+26snOrJnkWVyKsxqi8GEgZDfxCLK/RuKqeJRijAizIT8N77cwtZVKawh5iyUsWvEXw48pvaoWhY/m955cVJPG8/xHhkfk8q93PzT8dpmXv36RPuO6FgL4n6ZRdLV8dyLhe+jRWf2Gs2EMJykstyddfIBAtwa9gxpfv8RAfbG/709NYxp/eaeKmHa991Ej6xr4GYZ+2dguYHz4H55Tkrv+nfsgSLoKbVzxJX3UsaovatHxWsM3LxS/kqWK1M5dr7suyM+xZiW7rJnFQjtyzWd3g8KQayhGm3p3QVNcBK/PmXlreKAt5dbsKuzdVySLGBdM8EM432WTmVbLxQeaw==",
+        "ConnectionStrings__event_store_DB": "qyN+26snOrJnkWVyKsxqi8GEgZDfxCLK/RuKqeJRijAizIT8N77cwtZVKawh5iyUsWvEXw48pvaoWhY/m955cVJPG8/xHhkfk8q93PzT8dpmXv36RPuO6FgL4n6ZRdLV8dyLhe+jRWf2Gs2EMJykstyddfIBAtwa9gxpfv8RAfbG/709NYxp/eaeKmHa991Ej6xr4GYZ+2dguYHz4H55Tkrv+nfsgSLoKbVzxJX3UsaovatHxWsM3LxS/kqWK1M5dr7suyM+xZiW7rJnFQjtyzWd3g8KQayhGm3p3QVNcBK/PmXlreKAt5dbsKuzdVySLGBdM8EM432WTmVbLxQeaw=="
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.1.4</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Company>Douglas Modesto</Company>
+        <Copyright>Douglas Modesto</Copyright>
+        <Description>Implementation of Audit triggers for EventStore</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Sdk.Mediator.Abstractions" Version="1.2.1" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sdk.Db.EventStore\Sdk.Db.EventStore.csproj" />
+        <ProjectReference Include="..\Sdk.Mediator.Abstractions\Sdk.Mediator.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

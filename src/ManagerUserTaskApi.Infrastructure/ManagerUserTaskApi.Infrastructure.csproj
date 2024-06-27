@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\sdk\Sdk.Api\Sdk.Api.csproj" />
+        <ProjectReference Include="..\..\sdk\Sdk.Db.Audit\Sdk.Db.Audit.csproj" />
+        <ProjectReference Include="..\..\sdk\Sdk.Db.PostgreSQL\Sdk.Db.PostgreSQL.csproj" />
+        <ProjectReference Include="..\ManagerUserTaskApi.Domain\ManagerUserTaskApi.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Database\Migrations" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="7.0.5" />
+        <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+    </ItemGroup>
+
+</Project>

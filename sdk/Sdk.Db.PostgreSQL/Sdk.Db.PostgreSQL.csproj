@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.1.4</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Company>Douglas Modesto</Company>
+        <Copyright>Douglas Modesto</Copyright>
+        <Description>Implementation of datalayer access using PostgreSQL</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.2" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sdk.Db.Audit\Sdk.Db.Audit.csproj" />
+        <ProjectReference Include="..\Sdk.Db.EventStore\Sdk.Db.EventStore.csproj" />
+    </ItemGroup>
+
+</Project>

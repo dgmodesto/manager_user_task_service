@@ -1,0 +1,127 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/api/auth/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/v1/UserTask",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/v1/UserTask",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/v1/UserTask",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/v1/UserTask",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/v1/UserTask/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/v1/UserTask/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+
+
+    {
+      "DownstreamPathTemplate": "/v1/UserTask/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/v1/UserTask/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/v1/UserTask/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/v1/UserTask/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/v1/UserTask/list-user-task-grouped",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 7000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey"
+      },
+      "UpstreamPathTemplate": "/v1/UserTask/list-user-task-grouped",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://host.docker.internal:7001"
+
+  }
+}

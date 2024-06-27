@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.1.4</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Company>Douglas Modesto</Company>
+        <Copyright>Douglas Modesto</Copyright>
+        <Description>Implementation of EventStore database</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sdk.Db.Abstractions\Sdk.Db.Abstractions.csproj"/>
+    </ItemGroup>
+
+</Project>

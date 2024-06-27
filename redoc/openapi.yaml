@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  version: 1.0.0
+  description: A simple example of an OpenAPI specification
+
+paths:
+  /hello:
+    get:
+      summary: Get a greeting
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                message: Hello, world!

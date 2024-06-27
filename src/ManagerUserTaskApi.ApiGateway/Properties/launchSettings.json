@@ -1,0 +1,41 @@
+{
+  "profiles": {
+    "ApiGateway": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "REALM_LOOKUP_ClientId": "ManagerUserTaskApi-client-id",
+        "REALM_LOOKUP_ClientSecret": "EmHn28XkGxBZV8kLYS9yxN0pBfAk9ME0",
+        "REALM_LOOKUP_Name": "ManagerUserTaskApiRealm",
+        "IDP_BaseUrl": "http://localhost:8080",
+        "IDP_PATH_Auth": "realms/{0}/protocol/openid-connect/token",
+        "IDP_PATH_Logout": "realms/{0}/protocol/openid-connect/logout",
+        "IDP_PATH_ForgotPassword": "/admin/realms/{0}/users/{1}/reset-password-email"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5017"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:20268",
+      "sslPort": 0
+    }
+  }
+}

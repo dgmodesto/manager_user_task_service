@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.1.4</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Company>Douglas Modesto</Company>
+        <Copyright>Douglas Modesto</Copyright>
+        <Description>Abstraction for datalayer access</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.5" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,263 @@
+version: "3.8"
+
+services:
+#######################################################
+  #  OCELOT GATEWAY
+  #######################################################
+  ocelot_gateway:
+    container_name: ocelot_gateway
+    build:
+      context: .
+      dockerfile: src/ManagerUserTaskApi.ApiGateway/Dockerfile
+    ports:
+      - "7001:80"
+    networks:
+      - ManagerUserTaskApi-network
+    depends_on:
+      - api
+    restart: unless-stopped
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - REALM_LOOKUP_ClientId=ManagerUserTaskApi-client-id
+      - REALM_LOOKUP_ClientSecret=EmHn28XkGxBZV8kLYS9yxN0pBfAk9ME0
+      - REALM_LOOKUP_Name=ManagerUserTaskApiRealm
+      - IDP_BaseUrl=http://keycloak:8080
+      - IDP_PATH_Auth=realms/{0}/protocol/openid-connect/token
+      - IDP_PATH_Logout=realms/{0}/protocol/openid-connect/logout
+      - IDP_PATH_ForgotPassword=/admin/realms/{0}/users/{1}/reset-password-email
+      - API_BaseUrl=http://api:7000
+
+
+#######################################################
+#  WEB PORTAL
+#######################################################
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: frontend/manager-user-task-web/Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=uXjZ9QdWgQpEqk+bKXeLQzvVvY12JfEjkPZgHUpZ+8E=
+      - API_URL=http://host.docker.internal:7001/v1
+      - API_AUTH_URL=http://host.docker.internal:7000/api
+
+    networks:
+      - ManagerUserTaskApi-network
+    volumes:
+      - ./frontend/manager-user-task-web:/app
+    command: npm run dev
+
+  #######################################################
+  #  API
+  #######################################################
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: src/ManagerUserTaskApi.Api/Dockerfile
+    ports:
+      - "7000:80"
+    networks:
+      - ManagerUserTaskApi-network
+    depends_on:
+      - api-db
+    restart: unless-stopped
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings_open=host=api-db;port=5432;database=ManagerUserTaskApi_db;username=default;password=ManagerUserTaskApi!@85
+      - EVENT_STORE_DB=host=api-db;port=5432;database=ManagerUserTaskApi_db;username=default;password=ManagerUserTaskApi!@85
+
+      
+      - REALM_LOOKUP_ClientId=ManagerUserTaskApi-client-id
+      - REALM_LOOKUP_ClientSecret=EmHn28XkGxBZV8kLYS9yxN0pBfAk9ME0
+      - REALM_LOOKUP_Name=ManagerUserTaskApiRealm
+      - IDP_BaseUrl=http://keycloak:8080
+      - IDP_PATH_Auth=realms/{0}/protocol/openid-connect/token
+      - IDP_PATH_Logout=realms/{0}/protocol/openid-connect/logout
+      - IDP_PATH_ForgotPassword=/admin/realms/{0}/users/{1}/reset-password-email
+      - Serilog__WriteTo__1__Args__remoteAddress=logstash.elk
+      - Serilog__WriteTo__1__Args__remotePort=5000
+      - Serilog__MinimumLevel__Override__Microsoft=Debug
+      - Serilog__MinimumLevel__Override__DocumentsManager.Api=Debug
+      - Serilog__MinimumLevel__Override__System=Debug
+      - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore=Debug
+      - Private_Key=<RSAKeyValue><InverseQ>m/ytAfM3mZ/wi52xk1EVjdNTdIu4J5Ad+dEO8x6DWhCGP85008dnUcm4q+iyCGcqQ1206KBQ2Jlafjt39X1e8jbM3KAJd+nit4Fk21OPP3xq0g5Sewdslwjke1T/r4f8BN8Ug6a9YThmiPZYBoqfqxetnjth7BKbXjF+jRSv0p4=</InverseQ><DQ>l1HFAU41P2nqetJvjH8im6fY3AVtlRvsprFB48sHLsaz1K3b4KGOjmlm+jKOukULJG4Pc/r0+qmTn356ORe+75lSLDj9kFmXOzDHaR0JFV2hJsnnTbLcr6dFGnihEtOBdVd6BP7cAtL+w7r2knyHVMrSfcvuSh/a3Y35Wa8///c=</DQ><DP>aT2tuXC/Z5UOw9Q/GWZJz0HyNSS3IJICwt+VPyG2FPTNb8MKlTmVI5/eH+Qt3Q/df/7rVdu0Z3cIH1g+3wii0d0BnxtZhSriIqnctWfzo3RS1OZZ9+LtOTKdFmmvskb0B/Wx5BFyHSnGViiNn6g18oFOMy7J1ZlUJ9ZExVmEJS0=</DP><Q>0NhnT79XWed1c2RsZmdYEbJAUObLSxoQproeCNXwGxLo/hWfIk0OnYTnxnlApmnhKN2/zVX/9G77+oMnrqAbeEtxYR4WRdUuV2QZ6M8/p+EylnDpzWj8BMmBMrlg50jaPUf5YdaiL7plz5X1CssugYo9+DIjbl0RXJ6aPV2YMa8=</Q><P>9ex0+YFZeWxLzkyEqT5DV1n1lf9YYz+ddrOsheoarX4BLGuoOpo1nB0m7/APff+fK53jPG+ZgTokBaBJhwh4JT12WlaTCUu8k9W2ybH8DSTOX7URdGNuSLFbYRdLmLu59gxSPWf8e3G12DqZUEAqThdWVfT7mpmeonYoFgmLCrs=</P><D>KABXO2j/2lzbclcJ89lYySqc40vHJAh2HV3Vvt61qBWP1nNjrRJNqxgBJWw+3WIv1gvLA+/wCLBE0LGu/UnZH3F9kEspeUT+3L6N/VXXvkXQmE0vejPIH+FjleYUyRiVvI+IzZ0oV2n55CitPeJuaH4gT0I9GqFBUDGV262dImuSC0skBOd7erOToi/STo4YcQTo0ITOgQplv3e1ynR8iJ9dvcitgyQvo8Q0LJPoF5qoWEV0oDpk0rHcblN/9pLBpf4/dcdF1coxljtEuUtaOrNmeeHI+GG9b0RZ3xsCZl7iUDaudNBs/ddUCy3vJL9vycQPF0SFzqmKBJWJ4NBUpQ==</D><Exponent>AQAB</Exponent><Modulus>yKABzCp1py/Rl4xqtjmSYH7By7REuQNGT1gLsLQD+RaqZ9uuHgN2avZYnreTkwOv/ljZERUte9e/6n+cnNNR+dI3FiwJaYw3wHk01e8iJmPuzRPriN7CiQ0srIPI5J5afsflxSWYS27QiGfwnLlrC6rVJEY48w6iNJnLArZ9WJfa7QG7N2UIvJvdAbS/wsRRJgTrm/qPLXDjTHmwjGegZ+177fXKVkjiMisUYwGYFuE1SsqwY9bNFDR+29+r1bqqTa22KqPa6fvud3xlF0PjEGtJg9lDXnuKGH1ErNHAy1atcamnbIUeI7WpKCYEvP4xKSr/wTMUE1Y4/tjncSIg1Q==</Modulus></RSAKeyValue>
+      - ConnectionStrings__netcore_template_DB=qyN+26snOrJnkWVyKsxqi8GEgZDfxCLK/RuKqeJRijAizIT8N77cwtZVKawh5iyUsWvEXw48pvaoWhY/m955cVJPG8/xHhkfk8q93PzT8dpmXv36RPuO6FgL4n6ZRdLV8dyLhe+jRWf2Gs2EMJykstyddfIBAtwa9gxpfv8RAfbG/709NYxp/eaeKmHa991Ej6xr4GYZ+2dguYHz4H55Tkrv+nfsgSLoKbVzxJX3UsaovatHxWsM3LxS/kqWK1M5dr7suyM+xZiW7rJnFQjtyzWd3g8KQayhGm3p3QVNcBK/PmXlreKAt5dbsKuzdVySLGBdM8EM432WTmVbLxQeaw==
+      - ConnectionStrings__event_store_DB=qyN+26snOrJnkWVyKsxqi8GEgZDfxCLK/RuKqeJRijAizIT8N77cwtZVKawh5iyUsWvEXw48pvaoWhY/m955cVJPG8/xHhkfk8q93PzT8dpmXv36RPuO6FgL4n6ZRdLV8dyLhe+jRWf2Gs2EMJykstyddfIBAtwa9gxpfv8RAfbG/709NYxp/eaeKmHa991Ej6xr4GYZ+2dguYHz4H55Tkrv+nfsgSLoKbVzxJX3UsaovatHxWsM3LxS/kqWK1M5dr7suyM+xZiW7rJnFQjtyzWd3g8KQayhGm3p3QVNcBK/PmXlreKAt5dbsKuzdVySLGBdM8EM432WTmVbLxQeaw==
+      - Redis=redis:6379
+  #######################################################
+  #  POSTGRE DB
+  ####################################################### 
+  api-db:
+    image: postgres
+    container_name: api-db
+    environment:
+      - POSTGRES_DB=ManagerUserTaskApi_db
+      - POSTGRES_USER=default
+      - POSTGRES_PASSWORD=ManagerUserTaskApi!@85
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  POSTGRE PGADMIN
+  ####################################################### 
+  postgre-pgadmin:
+    image: dpage/pgadmin4
+    container_name: postgre-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "ManagerUserTaskApi@personal.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "ManagerUserTaskApi!@85"
+    ports:
+      - "16543:80"
+    depends_on:
+      - api-db
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  ELASTIC SEARCH
+  #######################################################
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    ports:
+      - 9200:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    networks:
+      - ManagerUserTaskApi-network
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200
+
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  KEYCLOAK
+  #######################################################
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1.1
+    command: -v start-dev --import-realm
+    container_name: keycloak
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: keycloak-db
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin123
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import
+    ports:
+      - 8080:8080
+    depends_on:
+      - keycloak-db
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  POSTGRES
+  #######################################################
+  keycloak-db:
+    image: postgres
+    container_name: keycloak-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  PROMETHEUS
+  #######################################################
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    restart: always
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    depends_on:
+      - api
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  GRAFANA
+  #######################################################
+  grafana:
+    container_name: grafana
+    build:
+      context: ./grafana
+      dockerfile: Dockerfile
+      args:
+        version: 1
+    image: grafana-local
+    restart: always
+    ports:
+      - 3333:3000
+    depends_on:
+      - prometheus
+    networks:
+      - ManagerUserTaskApi-network
+
+  #######################################################
+  #  REDIS
+  #######################################################
+  redis:
+    image: "redis:latest"
+    container_name: "redis"
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ManagerUserTaskApi-network
+
+networks:
+  ManagerUserTaskApi-network:
+    name: ManagerUserTaskApi-network
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
+    driver: local
+  cache:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
